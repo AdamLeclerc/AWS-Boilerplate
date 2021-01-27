@@ -9,7 +9,7 @@ Auto start/stop AWS EC2 &amp; RDS Instances in every available region
 1. Create a new Lambda function
   ###### Settings:
   * Function name: ***AutoOrc*** (or whatever you'd like to call this)
-  * Runtime : ***Python 3.7***
+  * Runtime : ***Python 3.8***
   * Handler : ***lambda_function.lambda_handler***
   * Memory : ***128 MB***
   * Timeout : ***1 Min***
@@ -21,7 +21,7 @@ Auto start/stop AWS EC2 &amp; RDS Instances in every available region
   * **START_TAG**           : *autoOrc-up*
   * **STOP_TAG**            : *autoOrc-down*
           Change these values if you want to use different AWS tags to indicate start and stop times
-  * **START_WEEKDAYS** : True|False
+  * **START_WEEKENDS** : True|False
           Set this to True to auto-start Instances on weekends too, false will start instances on weekdays.
 
       (If you don't include these environment variables/forget to add them then the defaults are assumed)
