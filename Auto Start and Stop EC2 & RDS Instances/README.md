@@ -8,7 +8,7 @@ Auto start/stop AWS EC2 &amp; RDS Instances in every available region
 #### Setup
 1. Create a new Lambda function
   ###### Settings:
-  * Function name: ***AutoOrc*** (or whatever you'd like to call this)
+  * Function name: ***autoOrc***
   * Runtime : ***Python 3.8***
   * Handler : ***lambda_function.lambda_handler***
   * Memory : ***128 MB***
