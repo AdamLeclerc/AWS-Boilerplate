@@ -23,7 +23,7 @@ except Exception:
     stop = 'autoOrc-down'
     log.info('No environment variable set for \'STOP_TAG\', using default')
 
-# Start instances only on weekends? (set to True to start every day)
+# Start instances on weekends? (set to True to start every day)
 try:
     weekends = os.environ['START_WEEKENDS']
 except Exception:
