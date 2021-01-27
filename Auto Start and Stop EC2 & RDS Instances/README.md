@@ -44,29 +44,48 @@ The values for these tags should be the **UTC time**, HH:MM you want the Instanc
 
 
 #### IAM Permissions required for Lambda Role to execute:
-  ###### (It's suggested you create a new role for this lambda, otherwise add these permissions to an existing role as needed)
-  * cloudwatch:PutMetricData
-  * ec2:DescribeInstances
-  * ec2:DescribeInstanceStatus
-  * ec2:DescribeTags
-  * ec2:StartInstances
-  * ec2:StopInstances
-  * logs:CreateLogGroup
-  * logs:CreateLogStream
-  * logs:DeleteLogGroup
-  * logs:DeleteLogStream
-  * logs:DescribeDestinations
-  * logs:DescribeLogGroups
-  * logs:DescribeLogStreams
-  * logs:DescribeMetricFilters
-  * logs:DescribeResourcePolicies
-  * logs:FilterLogEvents
-  * logs:GetLogEvents
-  * logs:ListTagsLogGroup
-  * logs:PutLogEvents
-  * logs:TagLogGroup
-  * rds:DescribeDBInstances
-  * rds:ListTagsForResource
-  * rds:StartDBInstance
-  * rds:StopDBInstance
-  * sts:GetCallerIdentity
+  ###### (It is suggested you create a new role for this lambda, otherwise add these permissions to an existing role used by the Lambda)
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "logs:CreateLogGroup",
+            "Resource": "arn:aws:logs:us-east-1:$AWS-ACCOUNT-NUMBER$:*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": [
+                "arn:aws:logs:us-east-1:$AWS-ACCOUNT-NUMBER$:log-group:/aws/lambda/autoOrc:*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": "lambda:InvokeFunction",
+            "Resource": "arn:aws:lambda:*:$AWS-ACCOUNT-NUMBER$:function:autoOrc"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "cloudwatch:PutMetricData",
+                "ec2:DescribeInstances",
+                "ec2:StartInstances",
+                "ec2:StopInstances",
+                "ec2:DescribeTags",
+                "ec2:DescribeInstanceStatus",
+                "rds:DescribeDBInstances",
+                "rds:ListTagsForResource",
+                "rds:StartDBInstance",
+                "rds:StopDBInstance",
+                "sts:GetCallerIdentity"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+```
